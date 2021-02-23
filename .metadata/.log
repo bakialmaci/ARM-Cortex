@@ -1,0 +1,42 @@
+!SESSION 2021-02-23 16:36:00.193 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\bakialmaci\Desktop\Projects\ARM\Arm-Cortex
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-02-23 16:36:11.095
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-02-23 16:36:11.179
+!MESSAGE Log4j initialized with config file C:\Users\bakialmaci\Desktop\Projects\ARM\Arm-Cortex\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-02-23 16:36:13.791
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-02-23 16:36:14.300
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-23 16:36:56.776
+!MESSAGE Indexed 'BMP180' (20 sources, 98 headers) in 4.8 sec: 8,071 declarations; 31,509 references; 2 unresolved inclusions; 36 syntax errors; 188 unresolved names (0.47%)
+!SESSION 2021-02-23 16:37:49.353 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data file:/C:/Users/bakialmaci/Desktop/Projects/ARM/Arm-Cortex/
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-02-23 16:37:56.640
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-02-23 16:37:56.701
+!MESSAGE Log4j initialized with config file C:\Users\bakialmaci\Desktop\Projects\ARM\Arm-Cortex\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-02-23 16:38:02.625
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-02-23 16:38:03.134
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-23 16:41:46.102
+!MESSAGE Indexed 'Blink' (19 sources, 77 headers) in 3.84 sec: 3,614 declarations; 13,093 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)

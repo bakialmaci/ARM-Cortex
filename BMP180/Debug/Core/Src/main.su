@@ -1,0 +1,11 @@
+main.c:95:5:main	8	static
+main.c:142:6:SystemClock_Config	72	static
+main.c:181:13:MX_I2C1_Init	8	static
+main.c:215:13:MX_GPIO_Init	24	static
+main.c:226:6:InitBMP	48	static
+main.c:244:10:Get_UTemp	32	static
+main.c:254:7:BMP180_GetTemp	16	static
+main.c:264:10:Get_UPress	40	static
+main.c:288:7:BMP180_GetPress	24	static
+main.c:323:7:BMP180_GetAlt	24	static
+main.c:334:6:Error_Handler	4	static,ignoring_inline_asm

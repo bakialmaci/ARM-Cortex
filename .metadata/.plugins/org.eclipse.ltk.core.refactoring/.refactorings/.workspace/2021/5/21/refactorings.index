@@ -1,0 +1,6 @@
+1621514653644	Delete 3 resources
+1621516935784	Delete resource 'GPS_TEST'
+1621519049848	Delete resource 'GPS_TEST/Core/Src/usart.c'
+1621519051668	Delete resource 'GPS_TEST/Core/Inc/usart.h'
+1621519850504	Delete resource 'GPS_TEST/Core/Src/gps.c'
+1621519851976	Delete resource 'GPS_TEST/Core/Src/gps.h'

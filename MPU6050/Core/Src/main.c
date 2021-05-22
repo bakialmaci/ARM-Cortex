@@ -28,8 +28,9 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 void MPU6050_Read_Gyro (void);
-void MPU6050_Read_Accel (void);
+float MPU6050_Read_Accel ();
 void MPU6050_Init (void);
+void Calibration_MPU6050(float data);
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -53,6 +54,8 @@ void MPU6050_Init (void);
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 
+UART_HandleTypeDef huart1;
+
 /* USER CODE BEGIN PV */
 int16_t Accel_X_RAW = 0;
 int16_t Accel_Y_RAW = 0;
@@ -63,12 +66,19 @@ int16_t Gyro_Y_RAW = 0;
 int16_t Gyro_Z_RAW = 0;
 
 float Ax, Ay, Az, Gx, Gy, Gz;
+
+float min_val = 0;
+float max_val = 0;
+float diff = 0;
+float prev_accel=0;
+float curr_accel=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -107,6 +117,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   MPU6050_Init();
   /* USER CODE END 2 */
@@ -118,8 +129,16 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  MPU6050_Read_Accel();
-	  MPU6050_Read_Gyro();
+	  for(int i = 10; i >= 0; i--)
+		  prev_accel = MPU6050_Read_Accel();
+	  HAL_Delay(200);
+	  	  curr_accel = MPU6050_Read_Accel();
+
+	  diff += (prev_accel - curr_accel);
+	  //Calibration_MPU6050(temp_data);
+	  //HAL_UART_Transmit(&huart1, (uint8_t*)"Z", sizeof("Z"), 1000);
+	  //HAL_Delay(100);
+	  //MPU6050_Read_Gyro();
   }
   /* USER CODE END 3 */
 }
@@ -197,6 +216,39 @@ static void MX_I2C1_Init(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 9600;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -244,8 +296,8 @@ void MPU6050_Init (void)
 		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000);
 
 		// Set accelerometer configuration in ACCEL_CONFIG Register
-		// XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=0 -> � 2g
-		Data = 0x00;
+		// XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=2 -> � 8g
+		Data = 0x03;
 		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000);
 
 		// Set Gyroscopic configuration in GYRO_CONFIG Register
@@ -256,26 +308,34 @@ void MPU6050_Init (void)
 
 }
 
-void MPU6050_Read_Accel (void)
+float MPU6050_Read_Accel ()
 {
 	uint8_t Rec_Data[6];
 
 	// Read 6 BYTES of data starting from ACCEL_XOUT_H register
 
-	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR, ACCEL_XOUT_H_REG, 1, Rec_Data, 6, 1000);
+	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR, ACCEL_XOUT_H_REG, 1, Rec_Data, 6, 100);
 
-	Accel_X_RAW = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
-	Accel_Y_RAW = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
-	Accel_Z_RAW = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]);
+//	Accel_X_RAW = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
+//	Accel_Y_RAW = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
+	Accel_Z_RAW = (float)(Rec_Data[4] << 8 | Rec_Data [5]);
 
 	/*** convert the RAW values into acceleration in 'g'
 	     we have to divide according to the Full scale value set in FS_SEL
 	     I have configured FS_SEL = 0. So I am dividing by 16384.0
 	     for more details check ACCEL_CONFIG Register              ****/
 
-	Ax = Accel_X_RAW/16384.0;
-	Ay = Accel_Y_RAW/16384.0;
-	Az = Accel_Z_RAW/16384.0;
+//	Ax = Accel_X_RAW/16384.0;
+//	Ay = Accel_Y_RAW/16384.0;
+	Az = ((float)Accel_Z_RAW - 2900)/2048;
+	return Az;
+}
+
+void Calibration_MPU6050(float data){
+	if(data > max_val)
+		max_val = data;
+	else if (data < min_val)
+		min_val = data;
 }
 
 

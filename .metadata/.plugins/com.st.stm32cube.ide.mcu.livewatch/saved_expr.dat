@@ -1,6 +1,2 @@
-Ax
-Ay
-Az
-Gx
-Gy
-Gz
+GPS.GPGGA.Latitude
+GPS.GPGGA.Longitude

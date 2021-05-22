@@ -4,7 +4,7 @@
 
 # 💊 Overview
 
-This repository contains samples and documents about ST Electronics ARM-Cortex microcontrollers. All the listed projects above are tested by myself.
+This repository contains samples and documents about ST Electronics ARM-Cortex microcontrollers. All the projects listed above have been tested by myself.
 This repository will help you how to create your projects in ARM microcontroller.
 
 Examples are tested in STM32F103C8T6 microcontroller and created with STMCubeIDE software.

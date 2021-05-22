@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;GPS_TEST/Core/Src/uart.c&apos; to &apos;usart.c&apos;" description="Rename resource &apos;uart.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/uart.c" name="usart.c" stamp="1621518767049" updateReferences="true"/>
-</session>

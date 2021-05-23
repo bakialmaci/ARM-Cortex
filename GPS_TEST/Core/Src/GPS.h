@@ -3,32 +3,34 @@
 
 #include <stdint.h>
 
-//##################################################################################################################
-
 typedef struct
 {
     char* Message_ID ;
     char* Time;
     char* Data_Valid ;
     char* Raw_Latitude ;
-    char* N_S ;
+    char N_S ;
     char* Raw_Longitude;
-    char* E_W ;
-    char* Speed;
-    char* COG;
-    char* Date;
-    char* Magnetic_Variation;
-    char* M_E_W;
-    char* Positioning_Mode;
-    float Altitude;
+    char E_W ;
 
     char* tmp_misc;
 
+    float Altitude;
     float Latitude;
 	float Longitude;
 
 	
 }GPGGA_t;
+
+typedef struct
+{
+    char* Message_ID ;
+    char* tmp_misc;
+
+    float Speed_ms;
+
+
+}GPRMC_t;
 
 typedef struct 
 {
@@ -38,14 +40,14 @@ typedef struct
 	uint32_t	LastTime;	
 	
 	GPGGA_t		GPGGA;
+	GPRMC_t		GPRMC;
 	
 }GPS_t;
 
 extern GPS_t GPS;
-//##################################################################################################################
+
 void	GPS_Init(void);
 void	GPS_CallBack(void);
 void	GPS_Process(void);
-//##################################################################################################################
 
 #endif

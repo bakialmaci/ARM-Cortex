@@ -1,4 +1,6 @@
+do_not_ask_to_install_user_dictionary=true
 eclipse.preferences.version=1
 spelling_locale_initialized=true
+spelling_user_dictionary_encoding=Cp1252
 useAnnotationsPrefPage=true
 useQuickDiffPrefPage=true

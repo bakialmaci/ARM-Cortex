@@ -2287,3 +2287,841 @@ Finished building: GPS_TEST.bin
  
 Finished building: GPS_TEST.list
  
+17:09:55 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:09:55 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:09:56 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:96:81: warning: passing argument 2 of 'GpsToDecimalDegrees' makes integer from pointer without a cast [-Wint-conversion]
+   96 |       GPS.GPGGA.Latitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Latitude, GPS.GPGGA.N_S);
+      |                                                                        ~~~~~~~~~^~~~
+      |                                                                                 |
+      |                                                                                 char *
+../Core/Src/GPS.c:11:53: note: expected 'char' but argument is of type 'char *'
+   11 | float GpsToDecimalDegrees(const char* nmeaPos, char quadrant){
+      |                                                ~~~~~^~~~~~~~
+../Core/Src/GPS.c:97:83: warning: passing argument 2 of 'GpsToDecimalDegrees' makes integer from pointer without a cast [-Wint-conversion]
+   97 |       GPS.GPGGA.Longitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Longitude, GPS.GPGGA.E_W);
+      |                                                                          ~~~~~~~~~^~~~
+      |                                                                                   |
+      |                                                                                   char *
+../Core/Src/GPS.c:11:53: note: expected 'char' but argument is of type 'char *'
+   11 | float GpsToDecimalDegrees(const char* nmeaPos, char quadrant){
+      |                                                ~~~~~^~~~~~~~
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:09:57 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:09:57 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:10:51 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:10:51 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:10:51 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GpsToDecimalDegrees':
+../Core/Src/GPS.c:21:16: warning: comparison between pointer and integer
+   21 |     if(quadrant=='W' || quadrant=='S')
+      |                ^~
+../Core/Src/GPS.c:21:33: warning: comparison between pointer and integer
+   21 |     if(quadrant=='W' || quadrant=='S')
+      |                                 ^~
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30712	    488	   2040	  33240	   81d8	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:10:53 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:10:53 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:11:00 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:11:01 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:11:01 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GpsToDecimalDegrees':
+../Core/Src/GPS.c:21:16: warning: comparison between pointer and integer
+   21 |     if(quadrant=='W' || quadrant=='S')
+      |                ^~
+../Core/Src/GPS.c:21:33: warning: comparison between pointer and integer
+   21 |     if(quadrant=='W' || quadrant=='S')
+      |                                 ^~
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30712	    488	   2040	  33240	   81d8	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:11:02 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:11:03 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:11:18 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:11:18 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:11:19 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:96:81: warning: passing argument 2 of 'GpsToDecimalDegrees' makes integer from pointer without a cast [-Wint-conversion]
+   96 |       GPS.GPGGA.Latitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Latitude, GPS.GPGGA.N_S);
+      |                                                                        ~~~~~~~~~^~~~
+      |                                                                                 |
+      |                                                                                 char *
+../Core/Src/GPS.c:11:47: note: expected 'char' but argument is of type 'char *'
+   11 | float GpsToDecimalDegrees(char* nmeaPos, char quadrant){
+      |                                          ~~~~~^~~~~~~~
+../Core/Src/GPS.c:97:83: warning: passing argument 2 of 'GpsToDecimalDegrees' makes integer from pointer without a cast [-Wint-conversion]
+   97 |       GPS.GPGGA.Longitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Longitude, GPS.GPGGA.E_W);
+      |                                                                          ~~~~~~~~~^~~~
+      |                                                                                   |
+      |                                                                                   char *
+../Core/Src/GPS.c:11:47: note: expected 'char' but argument is of type 'char *'
+   11 | float GpsToDecimalDegrees(char* nmeaPos, char quadrant){
+      |                                          ~~~~~^~~~~~~~
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:11:20 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:11:20 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:11:36 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:11:37 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:11:37 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:86:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   86 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:88:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   88 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:11:39 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:11:39 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:12:35 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:12:36 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:12:36 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/GPS.c:2:
+../Core/Src/GPS.h:12:14: error: expected ':', ',', ';', '}' or '__attribute__' before '=' token
+   12 |     char N_S = {0};
+      |              ^
+In file included from ../Core/Src/main.c:29:
+../Core/Src/GPS.h:12:14: error: expected ':', ',', ';', '}' or '__attribute__' before '=' token
+   12 |     char N_S = {0};
+      |              ^
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:86:16: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'N_S'
+   86 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                ^
+../Core/Src/GPS.c:87:17: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'Raw_Longitude'; did you mean 'Raw_Latitude'?
+   87 |       GPS.GPGGA.Raw_Longitude = strtok_f(NULL,',');
+      |                 ^~~~~~~~~~~~~
+      |                 Raw_Latitude
+../Core/Src/GPS.c:88:16: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'E_W'
+   88 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                ^
+../Core/Src/GPS.c:90:16: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'tmp_misc'
+   90 |       GPS.GPGGA.tmp_misc = strtok_f(NULL,',');
+      |                ^
+../Core/Src/GPS.c:91:16: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'tmp_misc'
+   91 |       GPS.GPGGA.tmp_misc = strtok_f(NULL,',');
+      |                ^
+../Core/Src/GPS.c:92:16: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'tmp_misc'
+   92 |       GPS.GPGGA.tmp_misc = strtok_f(NULL,',');
+      |                ^
+make: *** [Core/Src/subdir.mk:47: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/GPS.c:94:16: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'Altitude'
+   94 |       GPS.GPGGA.Altitude = atof(strtok_f(NULL,','));
+      |                ^
+../Core/Src/GPS.c:96:17: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'Latitude'; did you mean 'Raw_Latitude'?
+   96 |       GPS.GPGGA.Latitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Latitude, GPS.GPGGA.N_S);
+      |                 ^~~~~~~~
+      |                 Raw_Latitude
+../Core/Src/GPS.c:96:81: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'N_S'
+   96 |       GPS.GPGGA.Latitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Latitude, GPS.GPGGA.N_S);
+      |                                                                                 ^
+../Core/Src/GPS.c:97:16: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'Longitude'
+   97 |       GPS.GPGGA.Longitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Longitude, GPS.GPGGA.E_W);
+      |                ^
+../Core/Src/GPS.c:97:59: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'Raw_Longitude'; did you mean 'Raw_Latitude'?
+   97 |       GPS.GPGGA.Longitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Longitude, GPS.GPGGA.E_W);
+      |                                                           ^~~~~~~~~~~~~
+      |                                                           Raw_Latitude
+../Core/Src/GPS.c:97:83: error: 'GPGGA_t' {aka 'struct <anonymous>'} has no member named 'E_W'
+   97 |       GPS.GPGGA.Longitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Longitude, GPS.GPGGA.E_W);
+      |                                                                                   ^
+make: *** [Core/Src/subdir.mk:43: Core/Src/GPS.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:12:37 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:12:37 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:12:51 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:12:52 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:12:52 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:86:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   86 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:88:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   88 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:12:54 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:12:54 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:14:25 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:14:25 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:14:26 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:86:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   86 |       GPS.GPGGA.N_S = (char*)strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:88:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   88 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:14:27 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:14:27 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:14:41 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:14:42 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:14:42 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:86:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   86 |       GPS.GPGGA.N_S = (char) strtok_f(NULL,',');
+      |                       ^
+../Core/Src/GPS.c:88:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   88 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:14:44 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:14:44 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:14:52 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:14:52 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:14:52 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:86:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   86 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:88:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   88 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:14:54 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:14:54 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:15:08 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2040	  33248	   81e0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+17:45:43 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:45:43 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:45:44 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:91:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   91 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:93:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   93 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:110:25: error: incompatible types when assigning to type 'float *' from type 'double'
+  110 |       GPS.GPRMC.Speed = atof(strtok_f(NULL,','));
+      |                         ^~~~
+make: *** [Core/Src/subdir.mk:43: Core/Src/GPS.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:45:45 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:45:45 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:46:07 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+17:46:07 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+17:46:07 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:91:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   91 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:93:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   93 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30920	    488	   2056	  33464	   82b8	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:46:09 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+17:46:09 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+17:46:17 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30920	    488	   2056	  33464	   82b8	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+17:46:54 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:91:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   91 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:93:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   93 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30920	    488	   2056	  33464	   82b8	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+17:48:48 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:91:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   91 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:93:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   93 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30944	    488	   2056	  33488	   82d0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+18:10:19 **** Incremental Build of configuration Debug for project BMP180 ****
+make -j8 all 
+arm-none-eabi-size   BMP180.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25600	    124	   1740	  27464	   6b48	BMP180.elf
+Finished building: default.size.stdout
+ 
+18:10:20 **** Incremental Build of configuration Debug for project Blink ****
+make -j8 all 
+arm-none-eabi-size   Blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4712	     20	   1572	   6304	   18a0	Blink.elf
+Finished building: default.size.stdout
+ 
+18:10:21 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:106:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+  106 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:108:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+  108 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30944	    488	   2056	  33488	   82d0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+18:10:22 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+make -j8 all 
+arm-none-eabi-size   GY-NEO6MV2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7192	     20	   1908	   9120	   23a0	GY-NEO6MV2.elf
+Finished building: default.size.stdout
+ 
+18:10:22 **** Incremental Build of configuration Debug for project MPU6050 ****
+make -j8 all 
+arm-none-eabi-size   MPU6050.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17960	     20	   1756	  19736	   4d18	MPU6050.elf
+Finished building: default.size.stdout
+ 
+18:14:42 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:110:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+  110 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:112:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+  112 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30944	    488	   2056	  33488	   82d0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+18:17:39 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:109:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+  109 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
+      |                     ^
+../Core/Src/GPS.c:111:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+  111 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
+      |                     ^
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30944	    488	   2056	  33488	   82d0	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 

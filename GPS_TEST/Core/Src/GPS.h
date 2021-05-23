@@ -7,32 +7,26 @@
 
 typedef struct
 {
-	char *			DATA_TYPE;
-	char *			UTC_Hour;
-	uint8_t			UTC_Min;
-	uint8_t			UTC_Sec;
-	uint16_t		UTC_MicroSec;
-	
-	char *			Status;
+    char* Message_ID ;
+    char* Time;
+    char* Data_Valid ;
+    char* Raw_Latitude ;
+    char* N_S ;
+    char* Raw_Longitude;
+    char* E_W ;
+    char* Speed;
+    char* COG;
+    char* Date;
+    char* Magnetic_Variation;
+    char* M_E_W;
+    char* Positioning_Mode;
+    float Altitude;
 
-	float				Latitude;
-	double			LatitudeDecimal;
-	char *				NS_Indicator;
-	float				Longitude;
-	double			LongitudeDecimal;
-	char *				EW_Indicator;
-	
-	uint8_t			PositionFixIndicator;
-	uint8_t			SatellitesUsed;
-	float				HDOP;
-	float				MSL_Altitude;
-	char				MSL_Units;
-	float				Geoid_Separation;
-	char				Geoid_Units;
-	
-	uint16_t		AgeofDiffCorr;
-	char				DiffRefStationID[4];
-	char				CheckSum[2];	
+    char* tmp_misc;
+
+    float Latitude;
+	float Longitude;
+
 	
 }GPGGA_t;
 

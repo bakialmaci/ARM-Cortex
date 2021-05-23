@@ -1,0 +1,82 @@
+#include "GPSConfig.h"
+#include "GPS.h"
+#include "usart.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+GPS_t GPS;
+
+#define FIND_AND_NUL(s, p, c) ( \
+   (p) = strchr(s, c), \
+   *(p) = '\0', \
+   ++(p), \
+   (p))
+
+//##################################################################################################################
+double convertDegMinToDecDeg (float degMin)
+{
+  double min = 0.0;
+  double decDeg = 0.0;
+ 
+  //get the minutes, fmod() requires double
+  min = fmod((double)degMin, 100.0);
+ 
+  //rebuild coordinates in decimal degrees
+  degMin = (int) ( degMin / 100 );
+  decDeg = degMin + ( min / 60 );
+ 
+  return decDeg;
+}
+//##################################################################################################################
+void	GPS_Init(void)
+{
+	GPS.rxIndex=0;
+	HAL_UART_Receive_IT(&_GPS_USART,&GPS.rxTmp,1);	
+}
+//##################################################################################################################
+void	GPS_CallBack(void)
+{
+	GPS.LastTime=HAL_GetTick();
+	if(GPS.rxIndex < sizeof(GPS.rxBuffer)-2)
+	{
+		GPS.rxBuffer[GPS.rxIndex] = GPS.rxTmp;
+		GPS.rxIndex++;
+	}
+	HAL_UART_Receive_IT(&_GPS_USART,&GPS.rxTmp,1);
+}
+//##################################################################################################################
+void	GPS_Process(void) //$GPGGA,031956,2218.2035,N,11410.7595,E,1,04,3,9,005.9,M,-001.3,M,,*51
+{
+	if( (HAL_GetTick()-GPS.LastTime>50) && (GPS.rxIndex>0))
+	{
+		char *str;
+
+//		#if (_GPS_DEBUG==1)
+//		printf("%s",GPS.rxBuffer);
+//		#endif
+
+		str=strstr((char*)GPS.rxBuffer,"$GPGGA,");
+
+		if(str!=NULL){
+		    char* Message_ID = strtok_f(str,',');
+		    char* Time = strtok_f(NULL,',');
+		    char* Data_Valid = strtok_f(NULL,',');
+		    char* Raw_Latitude = strtok_f(NULL,',');
+		    char* N_S = strtok_f(NULL,',');
+		    char* Raw_Longitude = strtok_f(NULL,',');
+		    char* E_W = strtok_f(NULL,',');
+		    char* Speed = strtok_f(NULL,',');
+		    char* COG = strtok_f(NULL,',');
+		    char* Date = strtok_f(NULL,',');
+		    char* Magnetic_Variation = strtok_f(NULL,',');
+		    char* M_E_W = strtok_f(NULL,',');
+		    char* Positioning_Mode = strtok_f(NULL,',');
+		}		
+		memset(GPS.rxBuffer,0,sizeof(GPS.rxBuffer));
+		GPS.rxIndex=0;
+	}
+	HAL_UART_Receive_IT(&_GPS_USART,&GPS.rxTmp,1);
+}
+//##################################################################################################################

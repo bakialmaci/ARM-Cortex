@@ -1,0 +1,37 @@
+16:58:11 **** Incremental Build of configuration Debug for project GPS_TEST ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
+../Core/Src/GPS.c: In function 'GPS_Process':
+../Core/Src/GPS.c:96:81: warning: passing argument 2 of 'GpsToDecimalDegrees' makes integer from pointer without a cast [-Wint-conversion]
+   96 |       GPS.GPGGA.Latitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Latitude, GPS.GPGGA.N_S);
+      |                                                                        ~~~~~~~~~^~~~
+      |                                                                                 |
+      |                                                                                 char *
+../Core/Src/GPS.c:11:53: note: expected 'char' but argument is of type 'char *'
+   11 | float GpsToDecimalDegrees(const char* nmeaPos, char quadrant){
+      |                                                ~~~~~^~~~~~~~
+../Core/Src/GPS.c:97:83: warning: passing argument 2 of 'GpsToDecimalDegrees' makes integer from pointer without a cast [-Wint-conversion]
+   97 |       GPS.GPGGA.Longitude = GpsToDecimalDegrees(GPS.GPGGA.Raw_Longitude, GPS.GPGGA.E_W);
+      |                                                                          ~~~~~~~~~^~~~
+      |                                                                                   |
+      |                                                                                   char *
+../Core/Src/GPS.c:11:53: note: expected 'char' but argument is of type 'char *'
+   11 | float GpsToDecimalDegrees(const char* nmeaPos, char quadrant){
+      |                                                ~~~~~^~~~~~~~
+arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: GPS_TEST.elf
+ 
+arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
+arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
+arm-none-eabi-size   GPS_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30720	    488	   2064	  33272	   81f8	GPS_TEST.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPS_TEST.bin
+ 
+Finished building: GPS_TEST.list
+ 
+
+16:58:12 Build Finished. 0 errors, 2 warnings. (took 1s.110ms)
+

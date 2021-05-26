@@ -24,7 +24,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/i2c.h ../Core/Inc/main.h ../Core/Inc/usart.h \
- ../Core/Inc/gpio.h ../Core/Src/GPS.h
+ ../Core/Inc/gpio.h ../Core/Inc/GPS.h ../Core/Inc/MPU6050.h \
+ ../Core/Inc/BMP.h
 
 ../Core/Inc/main.h:
 
@@ -84,4 +85,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Core/Inc/gpio.h:
 
-../Core/Src/GPS.h:
+../Core/Inc/GPS.h:
+
+../Core/Inc/MPU6050.h:
+
+../Core/Inc/BMP.h:

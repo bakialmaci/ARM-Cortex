@@ -1,5 +1,5 @@
-Core/Src/GPS.o: ../Core/Src/GPS.c ../Core/Src/GPSConfig.h \
- ../Core/Src/GPS.h ../Core/Inc/usart.h ../Core/Inc/main.h \
+Core/Src/GPS.o: ../Core/Src/GPS.c ../Core/Inc/GPSConfig.h \
+ ../Core/Inc/GPS.h ../Core/Inc/usart.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -25,9 +25,9 @@ Core/Src/GPS.o: ../Core/Src/GPS.c ../Core/Src/GPSConfig.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 
-../Core/Src/GPSConfig.h:
+../Core/Inc/GPSConfig.h:
 
-../Core/Src/GPS.h:
+../Core/Inc/GPS.h:
 
 ../Core/Inc/usart.h:
 

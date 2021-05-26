@@ -1,4 +1,4 @@
-14:42:11 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
+22:56:56 **** Incremental Build of configuration Debug for project GY-NEO6MV2 ****
 make -j8 all 
 arm-none-eabi-size   GY-NEO6MV2.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   GY-NEO6MV2.elf
 Finished building: default.size.stdout
  
 
-14:42:12 Build Finished. 0 errors, 0 warnings. (took 390ms)
+22:56:56 Build Finished. 0 errors, 0 warnings. (took 310ms)
 

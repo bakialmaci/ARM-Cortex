@@ -1,0 +1,4 @@
+MPU6050.c:24:6:MPU_Process	24	static
+MPU6050.c:42:6:MPU6050_Init	32	static
+MPU6050.c:58:6:MPU6050_Read_Accel	32	static
+MPU6050.c:69:6:MPU6050_Read_Gyro	32	static

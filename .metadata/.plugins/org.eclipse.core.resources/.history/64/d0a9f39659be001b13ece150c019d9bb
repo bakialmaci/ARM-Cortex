@@ -1,0 +1,16 @@
+#ifndef _MPU6050_H_
+#define _MPU6050_H_
+
+#include <stdint.h>
+
+extern float degrees_pitch = 0, degrees_roll = 0;
+
+void MPU_Process(void);
+
+void MPU6050_Init (void);
+
+void MPU6050_Read_Accel ();
+
+void MPU6050_Read_Gyro (void);
+
+#endif

@@ -1,10 +1,20 @@
-15:01:14 **** Incremental Build of configuration Debug for project Avionic_Test_v1.0 ****
+22:56:53 **** Incremental Build of configuration Debug for project Avionic_Test_v1.0 ****
 make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Avionic_Test_v1.0.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\Avionic_Test_v1.0\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Avionic_Test_v1.0.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Avionic_Test_v1.0.elf
+ 
+arm-none-eabi-objdump -h -S  Avionic_Test_v1.0.elf  > "Avionic_Test_v1.0.list"
+arm-none-eabi-objcopy  -O binary  Avionic_Test_v1.0.elf  "Avionic_Test_v1.0.bin"
 arm-none-eabi-size   Avionic_Test_v1.0.elf 
    text	   data	    bss	    dec	    hex	filename
-  51600	    492	   2300	  54392	   d478	Avionic_Test_v1.0.elf
+  51584	    492	   2300	  54376	   d468	Avionic_Test_v1.0.elf
 Finished building: default.size.stdout
  
+Finished building: Avionic_Test_v1.0.bin
+ 
+Finished building: Avionic_Test_v1.0.list
+ 
 
-15:01:14 Build Finished. 0 errors, 0 warnings. (took 328ms)
+22:56:54 Build Finished. 0 errors, 0 warnings. (took 1s.327ms)
 

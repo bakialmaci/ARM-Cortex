@@ -1,0 +1,30 @@
+#ifndef _BMP_H_
+#define _BMP_H_
+
+#include <stdint.h>
+
+
+extern	short AC1 = 0;
+extern	short AC2 = 0;
+extern	short AC3 = 0;
+extern	unsigned short AC4 = 0;
+extern	unsigned short AC5 = 0;
+extern	unsigned short AC6 = 0;
+extern	short B1 = 0;
+extern	short B2 = 0;
+extern	short MB = 0;
+extern	short MC = 0;
+extern	short MD = 0;
+extern	long UT = 0;
+extern	short oss = 0;
+extern	long UP = 0;
+extern	long X1 = 0;
+extern	long X2 = 0;
+extern	long X3 = 0;
+extern	long B3 = 0;
+extern	long B5 = 0;
+extern	unsigned long B4 = 0;
+extern	long B6 = 0;
+extern	unsigned long B7 = 0;
+
+#endif

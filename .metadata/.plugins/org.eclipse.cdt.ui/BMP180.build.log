@@ -1,4 +1,4 @@
-18:10:19 **** Incremental Build of configuration Debug for project BMP180 ****
+14:42:10 **** Incremental Build of configuration Debug for project BMP180 ****
 make -j8 all 
 arm-none-eabi-size   BMP180.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   BMP180.elf
 Finished building: default.size.stdout
  
 
-18:10:20 Build Finished. 0 errors, 0 warnings. (took 385ms)
+14:42:10 Build Finished. 0 errors, 0 warnings. (took 328ms)
 

@@ -1,28 +1,10 @@
-18:17:39 **** Incremental Build of configuration Debug for project GPS_TEST ****
+14:42:11 **** Incremental Build of configuration Debug for project GPS_TEST ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/GPS.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/GPS.d" -MT"Core/Src/GPS.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/GPS.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/GPS.c: In function 'GPS_Process':
-../Core/Src/GPS.c:109:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
-  109 |       GPS.GPGGA.N_S = strtok_f(NULL,',');
-      |                     ^
-../Core/Src/GPS.c:111:21: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
-  111 |       GPS.GPGGA.E_W = strtok_f(NULL,',');
-      |                     ^
-arm-none-eabi-gcc -o "GPS_TEST.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\bakialmaci\Desktop\Projects\Arm-Cortex\GPS_TEST\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS_TEST.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: GPS_TEST.elf
- 
-arm-none-eabi-objdump -h -S  GPS_TEST.elf  > "GPS_TEST.list"
-arm-none-eabi-objcopy  -O binary  GPS_TEST.elf  "GPS_TEST.bin"
 arm-none-eabi-size   GPS_TEST.elf 
    text	   data	    bss	    dec	    hex	filename
-  30944	    488	   2056	  33488	   82d0	GPS_TEST.elf
+  30880	    488	   2064	  33432	   8298	GPS_TEST.elf
 Finished building: default.size.stdout
  
-Finished building: GPS_TEST.bin
- 
-Finished building: GPS_TEST.list
- 
 
-18:17:40 Build Finished. 0 errors, 2 warnings. (took 1s.159ms)
+14:42:11 Build Finished. 0 errors, 0 warnings. (took 328ms)
 

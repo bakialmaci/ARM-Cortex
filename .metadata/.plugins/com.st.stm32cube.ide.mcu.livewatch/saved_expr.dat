@@ -1,0 +1,8 @@
+GPS.GPGGA.Altitude
+GPS.GPGGA.Latitude
+GPS.GPGGA.Longitude
+Temperature
+Pressure
+Altitude
+degrees_pitch
+degrees_roll

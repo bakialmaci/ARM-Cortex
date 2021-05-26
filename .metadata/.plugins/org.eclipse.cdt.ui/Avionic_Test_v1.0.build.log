@@ -1,0 +1,10 @@
+15:01:14 **** Incremental Build of configuration Debug for project Avionic_Test_v1.0 ****
+make -j8 all 
+arm-none-eabi-size   Avionic_Test_v1.0.elf 
+   text	   data	    bss	    dec	    hex	filename
+  51600	    492	   2300	  54392	   d478	Avionic_Test_v1.0.elf
+Finished building: default.size.stdout
+ 
+
+15:01:14 Build Finished. 0 errors, 0 warnings. (took 328ms)
+

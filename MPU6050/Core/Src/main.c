@@ -22,13 +22,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <math.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 void MPU6050_Read_Gyro (void);
-float MPU6050_Read_Accel ();
+void MPU6050_Read_Accel ();
 void MPU6050_Init (void);
 void Calibration_MPU6050(float data);
 /* USER CODE END PTD */
@@ -48,6 +48,15 @@ void Calibration_MPU6050(float data);
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+// rotation angle of the sensor
+unsigned long last_read_time;
+float         last_x_angle;  	// These are the filtered angles
+float         last_y_angle;
+float         last_z_angle;
+float         last_gyro_x_angle;  // Store the gyro angles to compare drift
+float         last_gyro_y_angle;
+float         last_gyro_z_angle;
+
 
 /* USER CODE END PM */
 
@@ -72,6 +81,35 @@ float max_val = 0;
 float diff = 0;
 float prev_accel=0;
 float curr_accel=0;
+
+float accel_angle_x;
+float accel_angle_y;
+float accel_angle_z;
+
+float gyro_angle_x;
+float gyro_angle_y;
+float gyro_angle_z;
+
+float unfiltered_gyro_angle_x;
+float unfiltered_gyro_angle_y;
+float unfiltered_gyro_angle_z;
+
+static float degrees_pitch_acc, degrees_roll_acc;
+static float acc_vector;
+static float degrees_pitch = 0, degrees_roll = 0;
+
+float temp;
+float formatted_pitch;
+float formatted_roll;
+
+float angle_x;
+float angle_y;
+float angle_z;
+
+unsigned long prev_time, curr_time;
+float dt=0;
+const float RADIANS_TO_DEGREES = 57.2958; // 180/3.14159
+const float alpha = 0.96;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,6 +158,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   MPU6050_Init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -129,16 +168,25 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  for(int i = 10; i >= 0; i--)
-		  prev_accel = MPU6050_Read_Accel();
-	  HAL_Delay(200);
-	  	  curr_accel = MPU6050_Read_Accel();
+//	  prev_time = HAL_GetTick();
+	MPU6050_Read_Accel();
+	MPU6050_Read_Gyro();
 
-	  diff += (prev_accel - curr_accel);
-	  //Calibration_MPU6050(temp_data);
-	  //HAL_UART_Transmit(&huart1, (uint8_t*)"Z", sizeof("Z"), 1000);
-	  //HAL_Delay(100);
-	  //MPU6050_Read_Gyro();
+	degrees_pitch += Gy * 0.0000610687;
+	degrees_roll  += Gx * 0.0000610687;
+
+	degrees_pitch += degrees_roll * sin(Gz * 0.000001066);
+	degrees_roll  -= degrees_pitch * sin(Gz * 0.000001066);
+
+	acc_vector = sqrt((Ax * Ax) + (Ay * Ay) + (Az * Az));
+	degrees_pitch_acc = asin((float) Ay/acc_vector) * 57.2957795;
+	degrees_roll_acc  = asin((float) Ax/acc_vector) * -57.2957795;
+
+	degrees_pitch = degrees_pitch * 0.97 + degrees_pitch_acc * 0.03;
+	degrees_roll  = degrees_roll * 0.97 + degrees_roll_acc * 0.03;
+
+	formatted_pitch = degrees_pitch * 100;
+	formatted_roll = degrees_roll * 100;
   }
   /* USER CODE END 3 */
 }
@@ -278,37 +326,48 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void MPU6050_Init (void)
 {
-	uint8_t check;
-	uint8_t Data;
+	  uint8_t PWR_MGMT_1[2] = {0x6B, 0x00};
+	  while (HAL_I2C_Master_Transmit(&hi2c1, MPU6050_ADDR, PWR_MGMT_1, 2, 10) != HAL_OK);
 
-	// check device ID WHO_AM_I
+	  uint8_t GYR_CONFIG[2] = {0x1B, 0x08};
+	  while(HAL_I2C_Master_Transmit(&hi2c1, MPU6050_ADDR, GYR_CONFIG, 2, 10) != HAL_OK);
 
-	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR,WHO_AM_I_REG,1, &check, 1, 1000);
+	  uint8_t ACC_CONFIG[2] = {0x1C, 0x10};
+	  while(HAL_I2C_Master_Transmit(&hi2c1, MPU6050_ADDR, ACC_CONFIG, 2, 10) != HAL_OK);
 
-	if (check == 0x68)  // 0x68 will be returned by the sensor if everything goes well
-	{
-		// power management register 0X6B we should write all 0's to wake the sensor up
-		Data = 0;
-		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000);
-
-		// Set DATA RATE of 1KHz by writing SMPLRT_DIV register
-		Data = 0x07;
-		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000);
-
-		// Set accelerometer configuration in ACCEL_CONFIG Register
-		// XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=2 -> � 8g
-		Data = 0x03;
-		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000);
-
-		// Set Gyroscopic configuration in GYRO_CONFIG Register
-		// XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 -> � 250 �/s
-		Data = 0x00;
-		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, GYRO_CONFIG_REG, 1, &Data, 1, 1000);
-	}
+	  uint8_t LPF_CONFIG[2] = {0x1A, 0x03};
+	  while(HAL_I2C_Master_Transmit(&hi2c1, MPU6050_ADDR, LPF_CONFIG, 2, 10) != HAL_OK);
+//	uint8_t check;
+//	uint8_t Data;
+//
+//	// check device ID WHO_AM_I
+//
+//	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR,WHO_AM_I_REG,1, &check, 1, 1000);
+//
+//	if (check == 0x68)  // 0x68 will be returned by the sensor if everything goes well
+//	{
+//		// power management register 0X6B we should write all 0's to wake the sensor up
+//		Data = 0;
+//		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000);
+//
+//		// Set DATA RATE of 1KHz by writing SMPLRT_DIV register
+//		Data = 0x07;
+//		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000);
+//
+//		// Set accelerometer configuration in ACCEL_CONFIG Register
+//		// XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=2 -> � 8g
+//		Data = 0x10;
+//		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000);
+//
+//		// Set Gyroscopic configuration in GYRO_CONFIG Register
+//		// XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 -> � 250 �/s
+//		Data = 0x08;
+//		HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR, GYRO_CONFIG_REG, 1, &Data, 1, 1000);
+//	}
 
 }
 
-float MPU6050_Read_Accel ()
+void MPU6050_Read_Accel ()
 {
 	uint8_t Rec_Data[6];
 
@@ -316,19 +375,18 @@ float MPU6050_Read_Accel ()
 
 	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR, ACCEL_XOUT_H_REG, 1, Rec_Data, 6, 100);
 
-//	Accel_X_RAW = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
-//	Accel_Y_RAW = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
-	Accel_Z_RAW = (float)(Rec_Data[4] << 8 | Rec_Data [5]);
+	Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
+	Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
+	Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]);
 
 	/*** convert the RAW values into acceleration in 'g'
 	     we have to divide according to the Full scale value set in FS_SEL
 	     I have configured FS_SEL = 0. So I am dividing by 16384.0
 	     for more details check ACCEL_CONFIG Register              ****/
 
-//	Ax = Accel_X_RAW/16384.0;
-//	Ay = Accel_Y_RAW/16384.0;
-	Az = ((float)Accel_Z_RAW - 2900)/2048;
-	return Az;
+//	Ax = Accel_X_RAW/2048.0;
+//	Ay = Accel_Y_RAW/2048.0;
+//	Az = Accel_Z_RAW/2048.0;
 }
 
 void Calibration_MPU6050(float data){
@@ -347,18 +405,18 @@ void MPU6050_Read_Gyro (void)
 
 	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR, GYRO_XOUT_H_REG, 1, Rec_Data, 6, 1000);
 
-	Gyro_X_RAW = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
-	Gyro_Y_RAW = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
-	Gyro_Z_RAW = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]);
+	Gx = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
+	Gy = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
+	Gz = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]);
 
 	/*** convert the RAW values into dps (�/s)
 	     we have to divide according to the Full scale value set in FS_SEL
 	     I have configured FS_SEL = 0. So I am dividing by 131.0
 	     for more details check GYRO_CONFIG Register              ****/
 
-	Gx = Gyro_X_RAW/131.0;
-	Gy = Gyro_Y_RAW/131.0;
-	Gz = Gyro_Z_RAW/131.0;
+//	Gx = Gyro_X_RAW/131.0;
+//	Gy = Gyro_Y_RAW/131.0;
+//	Gz = Gyro_Z_RAW/131.0;
 }
 
 /* USER CODE END 4 */

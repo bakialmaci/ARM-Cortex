@@ -6,28 +6,33 @@
 #define BMP180_ADDRESS 0xEE
 #define atmPress 101325 //Pa
 
-short AC1 = 0;
-short AC2 = 0;
-short AC3 = 0;
-unsigned short AC4 = 0;
-unsigned short AC5 = 0;
-unsigned short AC6 = 0;
-short B1 = 0;
-short B2 = 0;
+short 			AC1 = 0;
+short 			AC2 = 0;
+short 			AC3 = 0;
+unsigned short 	AC4 = 0;
+unsigned short 	AC5 = 0;
+unsigned short  AC6 = 0;
+
+short 			B1 = 0;
+short 			B2 = 0;
+long 			B3 = 0;
+unsigned long 	B4 = 0;
+long 			B5 = 0;
+long 			B6 = 0;
+unsigned long 	B7 = 0;
+
+long 			X1 = 0;
+long 			X2 = 0;
+long 			X3 = 0;
+
 short MB = 0;
 short MC = 0;
 short MD = 0;
 long UT = 0;
 short oss = 0;
 long UP = 0;
-long X1 = 0;
-long X2 = 0;
-long X3 = 0;
-long B3 = 0;
-long B5 = 0;
-unsigned long B4 = 0;
-long B6 = 0;
-unsigned long B7 = 0;
+
+
 
 long Press = 0;
 long Temp = 0;
@@ -109,7 +114,7 @@ float BMP180_GetPress (int oss)
 
 	B6 = B5 - 4000;
 
-	X1 = (B2*(B6*B6/pow(2,12)))/pow(2,11);
+	X1 = (B2*(B6*(B6/pow(2,12))))/pow(2,11);
 	X2 = AC2 * B6 / pow(2,11);
 	X3 = X1 + X2;
 
@@ -139,5 +144,5 @@ float BMP180_GetPress (int oss)
 float BMP180_GetAlt (int oss)
 {
 	BMP180_GetPress (oss);
-	return 44330*(1-(pow((Press/(float)atmPress), 0.19029495718)));
+	return 44330*(1-(pow((Press/(float)atmPress), 0.19)));
 }

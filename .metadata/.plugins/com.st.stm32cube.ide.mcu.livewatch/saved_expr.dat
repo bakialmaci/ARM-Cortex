@@ -7,3 +7,7 @@ Altitude
 degrees_pitch
 degrees_roll
 overall_altitude
+GPS.GPRMC.Speed_ms
+max_altitude
+min_altitude
+filtered_val

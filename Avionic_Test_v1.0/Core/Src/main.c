@@ -35,6 +35,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 void Check_Recovery(void);
+double kalman_filter(double);
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -51,6 +52,13 @@ void Check_Recovery(void);
 
 /* USER CODE BEGIN PV */
 float overall_altitude;
+float max_altitude = 0, min_altitude = 99999;
+
+double q = 0.4; 	//process noise covariance
+double r = 2; 	//measurement noise covariance
+double filtered_val = 0; 	//value
+double p = 1; 	//estimation error covariance
+double k = 0; 		//kalman gain
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -160,13 +168,33 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 void Check_Recovery(void){
-	overall_altitude = GPS.GPGGA.Altitude*0.6 + Altitude*0.4;
+//	overall_altitude = GPS.GPGGA.Altitude*0.6 + Altitude*0.4;
 
-	if(abs(degrees_pitch) > 20.0 || abs(degrees_roll) > 20.0){
+	if(filtered_val == 0){
+		filtered_val = Altitude;
+	}
+	else
+		filtered_val = kalman_filter(Altitude);
+
+	if(filtered_val > max_altitude)
+		max_altitude = filtered_val;
+	if(filtered_val < min_altitude)
+		min_altitude = filtered_val;
+
+	if(abs(degrees_pitch) > 20.0 || abs(degrees_roll) > 20.0 || abs(GPS.GPRMC.Speed_ms) >= 2.0 || abs(max_altitude - min_altitude) >= 2.5){
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 	}else{
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
 	}
+}
+
+double kalman_filter(double input){
+	p = p + q;
+	k = p / (p + r);
+	filtered_val = filtered_val + k * (input - filtered_val);
+	p = (1 - k) * p;
+
+	return filtered_val;
 }
 /* USER CODE END 4 */
 

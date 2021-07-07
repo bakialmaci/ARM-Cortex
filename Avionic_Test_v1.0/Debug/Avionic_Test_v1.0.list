@@ -4188,7 +4188,7 @@ double kalman_filter(double input){
  8002636:	b082      	sub	sp, #8
  8002638:	af00      	add	r7, sp, #0
  800263a:	e9c7 0100 	strd	r0, r1, [r7]
-	p = p + q; 						// p = 100.125 				:: 24.125
+	p = p + q;
  800263e:	4b2f      	ldr	r3, [pc, #188]	; (80026fc <kalman_filter+0xc8>)
  8002640:	e9d3 0100 	ldrd	r0, r1, [r3]
  8002644:	4b2e      	ldr	r3, [pc, #184]	; (8002700 <kalman_filter+0xcc>)
@@ -4198,7 +4198,7 @@ double kalman_filter(double input){
  8002650:	460b      	mov	r3, r1
  8002652:	492a      	ldr	r1, [pc, #168]	; (80026fc <kalman_filter+0xc8>)
  8002654:	e9c1 2300 	strd	r2, r3, [r1]
-	k = p / (p + r); 				// 100.125 / 132 = 0.76		:: 24.125 / (24.125 + 32) = 0.43
+	k = p / (p + r);
  8002658:	4b28      	ldr	r3, [pc, #160]	; (80026fc <kalman_filter+0xc8>)
  800265a:	e9d3 4500 	ldrd	r4, r5, [r3]
  800265e:	4b27      	ldr	r3, [pc, #156]	; (80026fc <kalman_filter+0xc8>)
@@ -4215,7 +4215,7 @@ double kalman_filter(double input){
  800267c:	460b      	mov	r3, r1
  800267e:	4922      	ldr	r1, [pc, #136]	; (8002708 <kalman_filter+0xd4>)
  8002680:	e9c1 2300 	strd	r2, r3, [r1]
-	filtered_val = filtered_val + k * (input - filtered_val);  // 771 + 0.76 * (9) = 777.8 :: 771 + 0.43 * (781 - 777.8) = 1.38
+	filtered_val = filtered_val + k * (input - filtered_val);
  8002684:	4b21      	ldr	r3, [pc, #132]	; (800270c <kalman_filter+0xd8>)
  8002686:	e9d3 2300 	ldrd	r2, r3, [r3]
  800268a:	e9d7 0100 	ldrd	r0, r1, [r7]
@@ -4238,7 +4238,7 @@ double kalman_filter(double input){
  80026b8:	460b      	mov	r3, r1
  80026ba:	4914      	ldr	r1, [pc, #80]	; (800270c <kalman_filter+0xd8>)
  80026bc:	e9c1 2300 	strd	r2, r3, [r1]
-	p = (1 - k) * p; 				// 0.24 * 100.125 = 24
+	p = (1 - k) * p;
  80026c0:	4b11      	ldr	r3, [pc, #68]	; (8002708 <kalman_filter+0xd4>)
  80026c2:	e9d3 2300 	ldrd	r2, r3, [r3]
  80026c6:	f04f 0000 	mov.w	r0, #0
